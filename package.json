@@ -8,6 +8,7 @@
     "react-dom": "^15.6.1",
     "react-mapbox-autocomplete": "^0.2.3",
     "react-mapbox-gl": "^2.1.0",
+    "react-router": "^2.8.1",
     "react-scripts": "1.0.10"
   },
   "scripts": {
