@@ -24,8 +24,38 @@ class Home extends Component {
       lng:lng,
       id: this.nextId,
     })
+    fetch('http://localhost:3001/v1/places', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: result,
+        description: text,
+        lat: lat,
+        lng: lng,
+      })
+    })
     this.setState(this.state);
     this.nextId += 1;
+  }
+
+  fetchPlaces() {
+    const url = "http://localhost:3001/v1/places";
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return fetch(url, options)
+      .then(data => data.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log('erro');
+      });
   }
 
   render() {
@@ -46,6 +76,7 @@ class Home extends Component {
             );
           })}
         </div>
+        <button onClick={this.fetchPlaces}>Refresh</button>
       </div>
 
     );
