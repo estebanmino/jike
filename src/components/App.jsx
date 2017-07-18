@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from './Header';
+import Header from '../views/Header';
 import Home from './Home';
 
 class App extends Component {

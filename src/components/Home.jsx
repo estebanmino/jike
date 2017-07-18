@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import '../App.css';
-import Locator from './Locator';
-import Photo from './Photo';
-import MapView from './Map';
-import Header from './Header';
-import data from './data';
+import Locator from '../components/Locator';
+import Photo from '../components/Photo';
+import MapView from '../views/Map';
+import Header from '../views/Header';
+import data from '../data/Places';
 
 class Home extends Component {
   constructor(props) {
