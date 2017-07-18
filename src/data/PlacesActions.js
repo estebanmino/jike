@@ -2,10 +2,13 @@ import PlacesActionTypes from './PlacesActionTypes';
 import PLacesDispatcher from './PlacesDispatcher';
 
 const Actions = {
-  addTodo(text) {
+  addPlace(id, lat, lng, name) {
     PLacesDispatcher.dispatch({
       type: PlacesActionTypes.ADD_PLACE,
-      text,
+      id,
+      lng,
+      lat,
+      name,
     });
   },
 };

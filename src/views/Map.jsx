@@ -7,12 +7,6 @@ const Map = ReactMapboxGl({
 
 class MapView extends Component {
 
-  addMarker(e) {
-    const { markers } = this.state
-    markers.push([-0.491747846041145, 52.3233379650232])
-    this.setState({ markers })
-  }
-
   render() {
     return (
       <Map

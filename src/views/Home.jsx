@@ -3,14 +3,12 @@ import '../App.css';
 import Locator from '../components/Locator';
 import Photo from '../components/Photo';
 import MapView from '../views/Map';
-import Header from '../views/Header';
-import data from '../data/Places';
+import PlacesActions from '../data/PlacesActions';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locations: data
     }
   }
 
@@ -18,27 +16,8 @@ class Home extends Component {
 
   addLocation(result, lat, lng, text) {
     console.log(result, lat, lng, text);
-    this.state.locations.push({
-      name: text,
-      lat: lat,
-      lng:lng,
-      id: this.nextId,
-    })
-    fetch('http://localhost:3001/v1/places', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: result,
-        description: text,
-        lat: lat,
-        lng: lng,
-      })
-    })
-    this.setState(this.state);
-    this.nextId += 1;
+    PlacesActions.addPlace({id: this.nextId, lat: lat, lng: lng, name:  text});
+
   }
 
   fetchPlaces() {
@@ -76,7 +55,6 @@ class Home extends Component {
             );
           })}
         </div>
-        <button onClick={this.fetchPlaces}>Refresh</button>
       </div>
 
     );
