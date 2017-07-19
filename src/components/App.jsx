@@ -11,6 +11,7 @@ class App extends Component {
   }
 
   fetchPlaces() {
+    console.log('fetchPlaces');
     const url = "http://localhost:3001/v1/places";
     const options = {
       headers: {
@@ -50,7 +51,8 @@ class App extends Component {
         lat: lat,
         lng: lng,
       })
-    }).then(() => {this.setState(this.state)});
+    })
+    this.setState(this.state);
   }
 
   render() {

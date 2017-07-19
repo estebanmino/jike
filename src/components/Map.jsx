@@ -9,8 +9,6 @@ const ReactMap = ReactMapboxGl({
 
 class Map extends Component {
 
-
-
   render() {
     return (
       <ReactMap
