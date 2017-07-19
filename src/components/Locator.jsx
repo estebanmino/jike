@@ -3,10 +3,7 @@ import MapboxAutocomplete from 'react-mapbox-autocomplete';
 
 class Locator extends Component {
 
-  addLocation() {
-    console.log('pp');
-    this.props.addLocation();
-  }
+
 
   render() {
     return (
@@ -15,7 +12,7 @@ class Locator extends Component {
           <MapboxAutocomplete
             publicKey="pk.eyJ1IjoiZWZtaW5vIiwiYSI6ImNqMWJpY3UzMTA5amcycXFza3hoZ251eHAifQ.U_W44o3HEmTLraHrl0pHCg"
             inputClass='form-control search'
-            onSuggestionSelect={ this.props.addLocation }
+            onSuggestionSelect={ this.props.addPlace }
             resetSearch={ true }
             placeholder="Travelling to..."
           />
