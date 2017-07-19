@@ -8,7 +8,6 @@ import MapView from './components/MapView';
 import PhotosList from './components/PhotosList';
 import PlacesList from './components/PlacesList';
 import TripsList from './components/TripsList';
-import registerServiceWorker from './registerServiceWorker';
 
 
 
@@ -22,4 +21,3 @@ ReactDOM.render(
     </Route>
   </Router>
   , document.getElementById('root'));
-registerServiceWorker();

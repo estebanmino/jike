@@ -10,6 +10,7 @@ class App extends Component {
     }
   }
 
+
   fetchPlaces() {
     console.log('fetchPlaces');
     const url = "http://localhost:3001/v1/places";
@@ -59,13 +60,15 @@ class App extends Component {
     return (
       <div className="container">
         <Header />
-        {React.cloneElement(this.props.children,
-          {
-            fetchPlaces: this.fetchPlaces.bind(this),
-            addPlace: this.addPlace.bind(this),
-            places: this.state.places,
-          })
-        }
+        {React.Children.map(
+          this.props.children,
+          child => React.cloneElement(child,
+            {
+              fetchPlaces: this.fetchPlaces.bind(this),
+              addPlace: this.addPlace.bind(this),
+              places: this.state.places,
+            })
+        )}
       </div>
     );
   }

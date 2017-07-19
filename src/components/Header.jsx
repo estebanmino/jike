@@ -7,6 +7,7 @@ class Header extends Component {
     return (
       <div>
         <ul className="nav">
+          <li><NavLink to="/">App</NavLink></li>
           <li><NavLink to="/map">Map</NavLink></li>
           <li><NavLink to="/trips">Trips</NavLink></li>
           <li><NavLink to="/places">Places</NavLink></li>
