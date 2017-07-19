@@ -5,6 +5,7 @@
   "dependencies": {
     "mapbox-gl": "^0.38.0",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.31.1",
     "react-dom": "^15.6.1",
     "react-mapbox-autocomplete": "^0.2.3",
     "react-mapbox-gl": "^2.1.0",
