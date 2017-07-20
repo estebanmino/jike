@@ -13,7 +13,6 @@ class MapView extends Component {
 
 
   componentWillMount() {
-    console.log('componentWillMount');
     this.props.fetchPlaces();
     this.setState({
       places: this.props.places,
@@ -31,12 +30,6 @@ class MapView extends Component {
     this.props.addPlace(result, lat, lng, description);
   }
 
-  componentDidMount() {
-    console.log('componentDidMount',this.props.places)
-    if (this.props.places.length === 0) {
-      console.log('emopty');
-    }
-  }
 
   render() {
     return (

@@ -54,3 +54,7 @@ form {
 .place-list {
   align: center;
 }
+
+.place-list a  {
+  color: black;
+}

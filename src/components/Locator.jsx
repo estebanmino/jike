@@ -15,7 +15,6 @@ class Locator extends Component {
   }
 
   handleOnSuggestionSelect(result, lat, lng, text) {
-    console.log(result, lat, lng, text);
     this.setState({
       result: result,
       lat: lat,

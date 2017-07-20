@@ -7,6 +7,7 @@ class App extends Component {
     this.state = {
       places: [],
       places_count: 0,
+      actual_place: [],
     }
   }
 
@@ -33,6 +34,28 @@ class App extends Component {
       });
   }
 
+  fetchPlace(id) {
+    console.log('fetchPLace', id);
+    const url = "http://localhost:3001/v1/places/"+id;
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return fetch(url, options)
+      .then(data => data.json())
+      .then(data => {
+        this.setState({
+          actual_place: data,
+          error: null,
+        });
+      })
+      .catch(err => {
+        console.log('error in fetchPlace',err);
+      });
+  }
+
+
   addPlace(result, lat, lng, description) {
     this.state.places.push({
       name: result,
@@ -56,6 +79,7 @@ class App extends Component {
     this.setState(this.state);
   }
 
+
   render() {
     return (
       <div>
@@ -66,10 +90,12 @@ class App extends Component {
             child => React.cloneElement(child,
               {
                 fetchPlaces: this.fetchPlaces.bind(this),
+                fetchPlace:  this.fetchPlace.bind(this),
                 addPlace: this.addPlace.bind(this),
                 places: this.state.places,
+                actual_place: this.state.actual_place,
               })
-          )}
+          ) }
         </div>
       </div>
     );
