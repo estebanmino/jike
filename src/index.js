@@ -8,7 +8,7 @@ import MapView from './components/MapView';
 import PhotosList from './components/PhotosList';
 import PlacesList from './components/places/PlacesList';
 import Place from './components/places/Place';
-import TripsList from './components/TripsList';
+import TripsList from './components/trips/TripsList';
 
 
 

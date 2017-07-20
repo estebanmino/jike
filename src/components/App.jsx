@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
+import {browserHistory} from 'react-router';
 
 class App extends Component {
   constructor(props) {
@@ -79,6 +80,20 @@ class App extends Component {
     this.setState(this.state);
   }
 
+  deletePlace(id, index) {
+    console.log('deletePlace', id);
+    fetch('http://localhost:3001/v1/places/'+id, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    this.state.places.splice(index, 1);
+    this.setState(this.state);
+    browserHistory.push('/places');
+  }
+
 
   render() {
     return (
@@ -92,6 +107,7 @@ class App extends Component {
                 fetchPlaces: this.fetchPlaces.bind(this),
                 fetchPlace:  this.fetchPlace.bind(this),
                 addPlace: this.addPlace.bind(this),
+                deletePlace: this.deletePlace.bind(this),
                 places: this.state.places,
                 actual_place: this.state.actual_place,
               })
