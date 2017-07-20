@@ -6,7 +6,7 @@ import './index.css';
 import App from './components/App';
 import MapView from './components/MapView';
 import PhotosList from './components/PhotosList';
-import PlacesList from './components/PlacesList';
+import PlacesList from './components/places/PlacesList';
 import TripsList from './components/TripsList';
 
 
