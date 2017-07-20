@@ -20,15 +20,15 @@ class MapView extends Component {
     })
   }
 
-  handleAddPlace(result, lat, lng, text) {
+  handleAddPlace(result, lat, lng, description) {
     this.state.places.push({
-      name: text,
+      name: result,
       lat: lat,
       lng:lng,
       id: this.state.places.lenght,
     });
     this.setState(this.state);
-    this.props.addPlace(result, lat, lng, text);
+    this.props.addPlace(result, lat, lng, description);
   }
 
   componentDidMount() {
@@ -40,9 +40,14 @@ class MapView extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Locator addPlace={(result, lat, lng, text) =>  this.handleAddPlace(result, lat, lng, text) }/>
-        <Map places={this.state.places}/>
+      <div className="map-view">
+        <div className="add-place">
+          <h3>Add Place</h3>
+          <Locator addPlace={(result, lat, lng, description) =>  this.handleAddPlace(result, lat, lng, description) }/>
+        </div>
+        <div className="map">
+          <Map places={this.state.places}/>
+        </div>
       </div>
 
     );

@@ -33,9 +33,9 @@ class App extends Component {
       });
   }
 
-  addPlace(result, lat, lng, text) {
+  addPlace(result, lat, lng, description) {
     this.state.places.push({
-      name: text,
+      name: result,
       lat: lat,
       lng:lng,
       id: this.state.places_count,
@@ -48,7 +48,7 @@ class App extends Component {
       },
       body: JSON.stringify({
         name: result,
-        description: text,
+        description: description,
         lat: lat,
         lng: lng,
       })
@@ -58,17 +58,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         <Header />
-        {React.Children.map(
-          this.props.children,
-          child => React.cloneElement(child,
-            {
-              fetchPlaces: this.fetchPlaces.bind(this),
-              addPlace: this.addPlace.bind(this),
-              places: this.state.places,
-            })
-        )}
+        <div className="container">
+          {React.Children.map(
+            this.props.children,
+            child => React.cloneElement(child,
+              {
+                fetchPlaces: this.fetchPlaces.bind(this),
+                addPlace: this.addPlace.bind(this),
+                places: this.state.places,
+              })
+          )}
+        </div>
       </div>
     );
   }

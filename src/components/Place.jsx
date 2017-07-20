@@ -7,6 +7,7 @@ class Place extends Component {
         <h5>{this.props.place.name}</h5>
         <h5>{this.props.place.lat}</h5>
         <h5>{this.props.place.lng}</h5>
+        <h5>{this.props.place.description}</h5>
       </div>
     )
   }

@@ -5,8 +5,8 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
-        <ul className="nav">
+      <nav className="navbar navbar-default">
+        <ul className="nav navbar-nav">
           <li><NavLink to="/">App</NavLink></li>
           <li><NavLink to="/map">Map</NavLink></li>
           <li><NavLink to="/trips">Trips</NavLink></li>
@@ -14,7 +14,7 @@ class Header extends Component {
           <li><NavLink to="/photos">Photos</NavLink></li>
         </ul>
 
-      </div>
+      </nav>
 
     );
   }

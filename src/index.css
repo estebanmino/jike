@@ -21,3 +21,23 @@ body {
 .place {
   display: inline-block;
 }
+
+/* Map view*/
+
+.map-view {
+    display: inline-flex;
+}
+
+.map {
+  width: 50%;
+}
+
+.add-place {
+  width: 30%;
+}
+
+/* forms*/
+
+form {
+  margin: 20px;
+}
