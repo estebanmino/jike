@@ -124,7 +124,7 @@ class App extends Component {
 
   }
 
-  addPlace(result, lat, lng, description) {
+  addPlace(result, lat, lng, description, trip_id) {
     this.state.places.push({
       name: result,
       lat: lat,
@@ -142,6 +142,7 @@ class App extends Component {
         description: description,
         lat: lat,
         lng: lng,
+        trip_id: trip_id,
       })
     })
     this.setState(this.state);

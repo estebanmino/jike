@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
+import Locator from '../Locator'
 
 class Trip extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      places: [],
+    }
+  }
 
   componentWillMount() {
     this.props.fetchTrip(this.props.params.tripId);
@@ -9,6 +16,17 @@ class Trip extends Component {
   handleDeleteTrip(id, index) {
     console.log('handleDeleteTrip');
 
+  }
+
+  handleAddPlace(result, lat, lng, description) {
+    this.state.places.push({
+      name: result,
+      lat: lat,
+      lng:lng,
+      id: this.state.places.lenght,
+    });
+    this.setState(this.state);
+    this.props.addPlace(result, lat, lng, description, this.props.params.tripId);
   }
 
   render() {
@@ -24,7 +42,10 @@ class Trip extends Component {
               </div>
             ))}
         </div>
+        <div className="locator">
+          <Locator addPlace={(result, lat, lng, description) =>  this.handleAddPlace(result, lat, lng, description) }/>
 
+        </div>
       </div>
     )
   }

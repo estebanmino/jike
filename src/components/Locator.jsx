@@ -10,6 +10,7 @@ class Locator extends Component {
       lng:  0,
       text: '',
       description: '',
+      trip_id: null,
       mapbox_message: 'Travelling to...'
     }
   }
@@ -34,7 +35,8 @@ class Locator extends Component {
       this.state.result,
       this.state.lat,
       this.state.lng,
-      this.state.description
+      this.state.description,
+
     );
     this.setStateOnSubmit()
     event.preventDefault();

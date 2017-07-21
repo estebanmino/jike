@@ -69,3 +69,7 @@ form {
   margin: 25px;
   color: black;
 }
+
+.trip-view .locator {
+  width: 30%;
+}
