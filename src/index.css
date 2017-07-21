@@ -58,3 +58,14 @@ form {
 .place-list a  {
   color: black;
 }
+
+/* trips */
+.add-trip-list {
+  display: inline-flex;
+  color: black;
+}
+
+.add-trip-list span {
+  margin: 25px;
+  color: black;
+}
