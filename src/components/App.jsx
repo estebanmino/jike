@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import {browserHistory} from 'react-router';
 
 class App extends Component {
   constructor(props) {
@@ -59,9 +58,16 @@ class App extends Component {
       });
   }
 
-  fetchPlaces() {
+  fetchPlaces(id) {
+    console.log('fetchPlacesId', id);
     console.log('fetchPlaces');
-    const url = "http://localhost:3001/v1/places";
+    var url = '';
+    if (id) {
+      url = "http://localhost:3001/v1/trips/"+id+"/places";
+    }
+    else {
+      url = "http://localhost:3001/v1/places";
+    }
     const options = {
       headers: {
         "Content-Type": "application/json",
@@ -81,9 +87,9 @@ class App extends Component {
       });
   }
 
-  fetchPlace(id) {
-    console.log('fetchPLace', id);
-    const url = "http://localhost:3001/v1/places/"+id;
+  fetchPlace(id, trip_id) {
+    console.log('fetchPLace', id, trip_id);
+    const url = "http://localhost:3001/v1/trips/"+trip_id+"/places/"+id;
     const options = {
       headers: {
         "Content-Type": "application/json",
@@ -131,7 +137,7 @@ class App extends Component {
       lng:lng,
       id: this.state.places_count,
     })
-    fetch('http://localhost:3001/v1/places', {
+    fetch('http://localhost:3001/v1/trips/'+trip_id+'/places', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -148,9 +154,9 @@ class App extends Component {
     this.setState(this.state);
   }
 
-  deletePlace(id, index) {
+  deletePlace(id, index, trip_id) {
     console.log('deletePlace', id);
-    fetch('http://localhost:3001/v1/places/'+id, {
+    fetch('http://localhost:3001/v1/trips/'+trip_id+'/places/'+id, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -159,7 +165,21 @@ class App extends Component {
     })
     this.state.places.splice(index, 1);
     this.setState(this.state);
-    browserHistory.push('/places');
+    this.props.history.goBack();
+  }
+
+  deleteTrip(id, index) {
+    console.log('deleteTrip', id);
+    fetch('http://localhost:3001/v1/trips/'+id, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    this.state.trips.splice(index, 1);
+    this.setState(this.state);
+    this.props.history.goBack();
   }
 
 
@@ -179,6 +199,7 @@ class App extends Component {
                 addPlace: this.addPlace.bind(this),
                 addTrip: this.addTrip.bind(this),
                 deletePlace: this.deletePlace.bind(this),
+                deleteTrip: this.deleteTrip.bind(this),
                 places: this.state.places,
                 trips: this.state.trips,
                 actual_place: this.state.actual_place,

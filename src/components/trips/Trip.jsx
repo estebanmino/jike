@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Locator from '../Locator'
+import TripPlacesList from './TripPlacesList'
 
 class Trip extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class Trip extends Component {
   }
 
   handleDeleteTrip(id, index) {
-    console.log('handleDeleteTrip');
+  this.props.deleteTrip(id, index);
+  console.log('handleDeleteTrip');
 
   }
 
@@ -44,7 +46,9 @@ class Trip extends Component {
         </div>
         <div className="locator">
           <Locator addPlace={(result, lat, lng, description) =>  this.handleAddPlace(result, lat, lng, description) }/>
-
+        </div>
+        <div>
+          <TripPlacesList fetchPlaces={this.props.fetchPlaces} tripId={this.props.params.tripId} places={this.props.places}/>
         </div>
       </div>
     )

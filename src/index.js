@@ -22,10 +22,11 @@ ReactDOM.render(
       <Route path="/trips" component={TripsList}/>
       <Route path="/trips/add" component={TripForm} />
       <Route path="/trips/:tripId" component={Trip} />
+      <Route path="/trips/:tripId/places/:placeId" component={Place} />
 
 
       <Route path="/places" component={PlacesList}></Route>
-      <Route path="/places/:placeId" component={Place} />
+        <Route path="/places/:placeId" component={Place} />
 
 
       <Route path="/photos" component={PhotosList}/>
