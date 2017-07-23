@@ -22,6 +22,12 @@ body {
   display: inline-block;
 }
 
+/* Navbar */
+.nav-container {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
 /* Map view*/
 
 .map-view {
@@ -59,6 +65,10 @@ form {
   color: black;
 }
 
+.imgPreview img{
+  width: 600px;
+
+}
 /* trips */
 .add-trip-list {
   display: inline-flex;

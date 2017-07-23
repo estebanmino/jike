@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ImageUpload from './ImageUploader';
 
 class Place extends Component {
 
@@ -13,17 +14,25 @@ class Place extends Component {
 
   }
 
+  handlePhoto()  {
+    console.log('handlePhoto');
+  }
+
   render() {
     return (
       <div className="place">
         <h1>Place</h1>
           {this.props.actual_place.map((place) => (
+
             <div key={place.id}>
               <h3>{place.name}</h3>
               <h4>{place.description}</h4>
               <button className="btn btn-danger" onClick={this.handleDeletePlace.bind(this, place.id, this.props.index, place.trip_id)}>Delete</button>
-            </div>
+              <ImageUpload />
+          </div>
+
           ))}
+
       </div>
     )
   }

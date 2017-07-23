@@ -11,6 +11,7 @@ import Place from './components/places/Place';
 import TripsList from './components/trips/TripsList';
 import TripForm from './components/trips/TripForm';
 import Trip from './components/trips/Trip';
+import SignIn from './components/users/SignIn';
 
 
 
@@ -26,10 +27,13 @@ ReactDOM.render(
 
 
       <Route path="/places" component={PlacesList}></Route>
-        <Route path="/places/:placeId" component={Place} />
+      <Route path="/places/:placeId" component={Place} />
 
 
       <Route path="/photos" component={PhotosList}/>
+
+      <Route path="/signin" component={SignIn}/>
+
     </Route>
   </Router>
   , document.getElementById('root'));
