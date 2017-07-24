@@ -3,26 +3,22 @@ import React, {Component} from 'react';
 class ImageUpload extends Component {
   constructor(props) {
     super(props);
-    this.state = {file: '',imagePreviewUrl: ''};
+    this.state = {
+      file: '',
+      imagePreviewUrl: ''
+    };
   }
 
-  _handleSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
-    // TODO: do something with -> this.state.file
-    fetch('https://apijike.herokuapp.com/v1/trips/1/places/1/photos', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        photo: {
-        name: 'name',
-        description: 'description',
-        place_id: 1,
-        image: this.state.imagePreviewUrl,
-      }})
-    })
+
+    this.props.addImage(
+      this.props.place.trip_id,
+      this.props.place.id,
+      this.state.imagePreviewUrl,
+      'name',
+      'description',
+    );
     console.log('handle uploading-');
   }
 
@@ -53,14 +49,17 @@ class ImageUpload extends Component {
 
     return (
       <div className="previewComponent">
-        <form onSubmit={(e)=>this._handleSubmit(e)}>
-          <input className="fileInput"
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <input
+            className="form-control"
             type="file"
             onChange={(e)=>this._handleImageChange(e)} />
-          <button className="submitButton"
+          <input
+            className="btn btn-default"
             type="submit"
-            onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
+            value="Submit" />
         </form>
+
         <div className="imgPreview" >
           {$imagePreview}
         </div>

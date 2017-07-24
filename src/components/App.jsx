@@ -11,13 +11,14 @@ class App extends Component {
       places_count: 0,
       actual_place: [],
       actual_trip: [],
+      actual_place_photos: [],
     }
   }
 
 
   fetchTrips() {
     console.log('fetchTrips');
-    const url = "http://localhost:3001/v1/trips";
+    const url = "https://apijike.herokuapp.com/v1/trips";
     const options = {
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +40,7 @@ class App extends Component {
 
   fetchTrip(id) {
     console.log('fetchTrip', id);
-    const url = "http://localhost:3001/v1/trips/"+id;
+    const url = "https://apijike.herokuapp.com/v1/trips/"+id;
     const options = {
       headers: {
         "Content-Type": "application/json",
@@ -63,10 +64,10 @@ class App extends Component {
     console.log('fetchPlaces');
     var url = '';
     if (id) {
-      url = "http://localhost:3001/v1/trips/"+id+"/places";
+      url = "https://apijike.herokuapp.com/v1/trips/"+id+"/places";
     }
     else {
-      url = "http://localhost:3001/v1/places";
+      url = "https://apijike.herokuapp.com/v1/places";
     }
     const options = {
       headers: {
@@ -89,7 +90,7 @@ class App extends Component {
 
   fetchPlace(id, trip_id) {
     console.log('fetchPLace', id, trip_id);
-    const url = "http://localhost:3001/v1/trips/"+trip_id+"/places/"+id;
+    const url = "https://apijike.herokuapp.com/v1/trips/"+trip_id+"/places/"+id;
     const options = {
       headers: {
         "Content-Type": "application/json",
@@ -108,6 +109,27 @@ class App extends Component {
       });
   }
 
+  fetchPlacePhotos(id, trip_id) {
+    console.log('fetchPlacePhotos', id, trip_id);
+    const url = "https://apijike.herokuapp.com/v1/trips/"+trip_id+"/places/"+id+"/photos";
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return fetch(url, options)
+      .then(data => data.json())
+      .then(data => {
+        this.setState({
+          actual_place_photos: data,
+          error: null,
+        });
+      })
+      .catch(err => {
+        console.log('error in fetchPlace',err);
+      });
+  }
+
   addTrip(name, description) {
     console.log('addTrip');
     this.state.trips.push({
@@ -115,7 +137,7 @@ class App extends Component {
       description:description,
       id: this.state.trips_count,
     })
-    fetch('http://localhost:3001/v1/trips', {
+    fetch('https://apijike.herokuapp.com/v1/trips', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -137,7 +159,7 @@ class App extends Component {
       lng:lng,
       id: this.state.places_count,
     })
-    fetch('http://localhost:3001/v1/trips/'+trip_id+'/places', {
+    fetch('https://apijike.herokuapp.com/v1/trips/'+trip_id+'/places', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -156,7 +178,7 @@ class App extends Component {
 
   deletePlace(id, index, trip_id) {
     console.log('deletePlace', id);
-    fetch('http://localhost:3001/v1/trips/'+trip_id+'/places/'+id, {
+    fetch('https://apijike.herokuapp.com/v1/trips/'+trip_id+'/places/'+id, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -170,7 +192,7 @@ class App extends Component {
 
   deleteTrip(id, index) {
     console.log('deleteTrip', id);
-    fetch('http://localhost:3001/v1/trips/'+id, {
+    fetch('https://apijike.herokuapp.com/v1/trips/'+id, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -180,6 +202,25 @@ class App extends Component {
     this.state.trips.splice(index, 1);
     this.setState(this.state);
     this.props.history.goBack();
+  }
+
+  addImage(trip_id, place_id, image_base64, name, description) {
+    console.log('addImage');
+    fetch('https://apijike.herokuapp.com/v1/trips/'+ trip_id +'/places/'+ place_id +'/photos', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        photo: {
+          name: name,
+          description: description,
+          place_id: place_id,
+          image: image_base64,
+        }
+      })
+    })
   }
 
 
@@ -196,14 +237,17 @@ class App extends Component {
                 fetchTrip:  this.fetchTrip.bind(this),
                 fetchPlaces: this.fetchPlaces.bind(this),
                 fetchPlace:  this.fetchPlace.bind(this),
+                fetchPlacePhotos: this.fetchPlacePhotos.bind(this),
                 addPlace: this.addPlace.bind(this),
                 addTrip: this.addTrip.bind(this),
                 deletePlace: this.deletePlace.bind(this),
                 deleteTrip: this.deleteTrip.bind(this),
                 places: this.state.places,
                 trips: this.state.trips,
+                actual_place_photos: this.state.actual_place_photos,
                 actual_place: this.state.actual_place,
                 actual_trip: this.state.actual_trip,
+                addImage: this.addImage.bind(this),
               })
           ) }
         </div>

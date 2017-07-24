@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import ImageUpload from './ImageUploader';
+import ImagePreview from './ImagePreview';
 
 class Place extends Component {
 
   componentWillMount() {
     this.props.fetchPlace(this.props.params.placeId, this.props.params.tripId);
+    this.props.fetchPlacePhotos(this.props.params.placeId, this.props.params.tripId);
   }
 
   handleDeletePlace(id, index, trip_id) {
@@ -28,7 +30,10 @@ class Place extends Component {
               <h3>{place.name}</h3>
               <h4>{place.description}</h4>
               <button className="btn btn-danger" onClick={this.handleDeletePlace.bind(this, place.id, this.props.index, place.trip_id)}>Delete</button>
-              <ImageUpload />
+              <ImageUpload place={place} addImage={this.props.addImage.bind(this)}/>
+              {this.props.actual_place_photos.map((photo, index) => (
+                <ImagePreview photo={photo} key={index} />
+              ))}
           </div>
 
           ))}
