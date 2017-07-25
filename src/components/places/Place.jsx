@@ -29,10 +29,10 @@ class Place extends Component {
             <div key={place.id}>
               <h3>{place.name}</h3>
               <h4>{place.description}</h4>
-              <button className="btn btn-danger" onClick={this.handleDeletePlace.bind(this, place.id, this.props.index, place.trip_id)}>Delete</button>
+                <button className="btn btn-danger" onClick={this.handleDeletePlace.bind(this, place.id, this.props.index, place.trip_id)}>Delete</button>
               <ImageUpload place={place} addImage={this.props.addImage.bind(this)}/>
               {this.props.actual_place_photos.map((photo, index) => (
-                <ImagePreview photo={photo} key={index} />
+                <ImagePreview photo={photo} key={index} place={place} editPhoto={this.props.editPhoto.bind(this)} />
               ))}
           </div>
 

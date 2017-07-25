@@ -223,6 +223,24 @@ class App extends Component {
     })
   }
 
+  editPhoto(trip_id, place_id, id, name, description) {
+    console.log('addImage');
+    fetch('https://apijike.herokuapp.com/v1/trips/'+ trip_id +'/places/'+ place_id +'/photos/'+id, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        photo: {
+          name: name,
+          description: description,
+          place_id: place_id,
+        }
+      })
+    })
+  }
+
 
   render() {
     return (
@@ -242,6 +260,7 @@ class App extends Component {
                 addTrip: this.addTrip.bind(this),
                 deletePlace: this.deletePlace.bind(this),
                 deleteTrip: this.deleteTrip.bind(this),
+                editPhoto: this.editPhoto.bind(this),
                 places: this.state.places,
                 trips: this.state.trips,
                 actual_place_photos: this.state.actual_place_photos,
