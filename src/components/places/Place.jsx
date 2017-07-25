@@ -20,6 +20,16 @@ class Place extends Component {
     console.log('handlePhoto');
   }
 
+  handleDeletePhoto(trip_id, place_id, photo_id, key)  {
+    console.log('handleDeltePhoto', trip_id, place_id, photo_id);
+    this.props.deletePhoto(
+      trip_id,
+      place_id,
+      photo_id,
+      key
+    )
+  }
+
   render() {
     return (
       <div className="place">
@@ -32,7 +42,14 @@ class Place extends Component {
                 <button className="btn btn-danger" onClick={this.handleDeletePlace.bind(this, place.id, this.props.index, place.trip_id)}>Delete</button>
               <ImageUpload place={place} addImage={this.props.addImage.bind(this)}/>
               {this.props.actual_place_photos.map((photo, index) => (
-                <ImagePreview photo={photo} key={index} place={place} editPhoto={this.props.editPhoto.bind(this)} />
+                <ImagePreview
+                  photo={photo}
+                  key={index}
+                  compKey={index}
+                  place={place}
+                  editPhoto={this.props.editPhoto.bind(this)}
+                  handleDeletePhoto={this.handleDeletePhoto.bind(this)}
+                  />
               ))}
           </div>
 

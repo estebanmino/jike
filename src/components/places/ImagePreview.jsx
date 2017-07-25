@@ -12,13 +12,18 @@ class ImagePreview extends Component {
 
   handleDeletePhoto() {
     console.log('handleDeletePhoto', this.props.photo.id);
+    this.props.handleDeletePhoto(
+      this.props.place.trip_id,
+      this.props.place.id,
+      this.props.photo.id,
+      this.props.compKey,
+    )
   }
 
   handleEditPhoto() {
     console.log('handleEditPhoto', this.props.photo.id);
     this.setState({
       edit: true,
-
     })
   }
 
@@ -34,7 +39,6 @@ class ImagePreview extends Component {
         edit: false,
         name: name,
         description: description,
-
       })
   }
 

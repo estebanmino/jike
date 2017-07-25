@@ -241,6 +241,19 @@ class App extends Component {
     })
   }
 
+  deletePhoto(trip_id, place_id, id, key) {
+    console.log('DELETEImage');
+    fetch('https://apijike.herokuapp.com/v1/trips/'+ trip_id +'/places/'+ place_id +'/photos/'+id, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    this.state.actual_place_photos.splice(key, 1);
+    this.setState(this.state);
+  }
+
 
   render() {
     return (
@@ -261,6 +274,7 @@ class App extends Component {
                 deletePlace: this.deletePlace.bind(this),
                 deleteTrip: this.deleteTrip.bind(this),
                 editPhoto: this.editPhoto.bind(this),
+                deletePhoto: this.deletePhoto.bind(this),
                 places: this.state.places,
                 trips: this.state.trips,
                 actual_place_photos: this.state.actual_place_photos,
